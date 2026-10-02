@@ -2,16 +2,26 @@
 
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { Github, Linkedin, Mail, Copy, Check, ArrowUpRight, Sparkles, MapPin } from "lucide-react";
+import { Github, Linkedin, Mail, Phone, Copy, Check, ArrowUpRight, Sparkles, MapPin } from "lucide-react";
 
 export const Contact: React.FC = () => {
-  const [copied, setCopied] = useState(false);
+  const [emailCopied, setEmailCopied] = useState(false);
+  const [phoneCopied, setPhoneCopied] = useState(false);
+
   const email = "brovin.hquadros@gmail.com";
+  const phoneDisplay = "+91 7975623073";
+  const phoneTel = "tel:+917975623073";
 
   const handleCopyEmail = () => {
     navigator.clipboard.writeText(email);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+    setEmailCopied(true);
+    setTimeout(() => setEmailCopied(false), 2000);
+  };
+
+  const handleCopyPhone = () => {
+    navigator.clipboard.writeText("+91 7975623073");
+    setPhoneCopied(true);
+    setTimeout(() => setPhoneCopied(false), 2000);
   };
 
   return (
@@ -46,30 +56,56 @@ export const Contact: React.FC = () => {
             Mangaluru, India
           </div>
 
-          {/* Email quick copy */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 max-w-md mx-auto pt-2">
-            <div className="w-full flex items-center justify-between px-5 py-3.5 rounded-full bg-white/5 border border-white/10 font-mono text-sm text-gray-200">
-              <span className="truncate">{email}</span>
+          {/* Quick Contact Info (Email & Phone) */}
+          <div className="flex flex-col md:flex-row items-center justify-center gap-4 max-w-2xl mx-auto pt-2">
+            {/* Email pill */}
+            <div className="w-full flex items-center justify-between px-5 py-3.5 rounded-full bg-white/5 border border-white/10 font-mono text-sm text-gray-200 hover:border-white/20 transition-colors">
+              <a
+                href={`mailto:${email}`}
+                className="flex items-center gap-2.5 hover:text-sky-400 transition-colors truncate"
+              >
+                <Mail className="w-4 h-4 text-sky-400 shrink-0" />
+                <span className="truncate">{email}</span>
+              </a>
               <button
                 onClick={handleCopyEmail}
-                className="p-1.5 rounded-lg text-gray-400 hover:text-sky-400 hover:bg-white/10 transition-colors shrink-0"
+                className="p-1.5 rounded-lg text-gray-400 hover:text-sky-400 hover:bg-white/10 transition-colors shrink-0 ml-2"
                 title="Copy Email"
               >
-                {copied ? <Check className="w-4 h-4 text-emerald-400" /> : <Copy className="w-4 h-4" />}
+                {emailCopied ? <Check className="w-4 h-4 text-emerald-400" /> : <Copy className="w-4 h-4" />}
               </button>
             </div>
 
-            <a
-              href={`mailto:${email}`}
-              className="w-full sm:w-auto shrink-0 flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-gradient-to-r from-sky-500 to-indigo-600 hover:from-sky-400 hover:to-indigo-500 text-white font-semibold text-sm transition-all hover:scale-105 active:scale-95 shadow-lg shadow-sky-500/25"
-            >
-              <Mail className="w-4 h-4" />
-              Contact Me
-            </a>
+            {/* Phone pill */}
+            <div className="w-full flex items-center justify-between px-5 py-3.5 rounded-full bg-white/5 border border-white/10 font-mono text-sm text-gray-200 hover:border-white/20 transition-colors">
+              <a
+                href={phoneTel}
+                className="flex items-center gap-2.5 hover:text-sky-400 transition-colors truncate"
+              >
+                <Phone className="w-4 h-4 text-sky-400 shrink-0" />
+                <span className="truncate">{phoneDisplay}</span>
+              </a>
+              <button
+                onClick={handleCopyPhone}
+                className="p-1.5 rounded-lg text-gray-400 hover:text-sky-400 hover:bg-white/10 transition-colors shrink-0 ml-2"
+                title="Copy Phone Number"
+              >
+                {phoneCopied ? <Check className="w-4 h-4 text-emerald-400" /> : <Copy className="w-4 h-4" />}
+              </button>
+            </div>
           </div>
 
-          {/* Social Links */}
+          {/* Action Links & Socials */}
           <div className="flex flex-wrap items-center justify-center gap-4 pt-6 border-t border-white/5">
+            <a
+              href={phoneTel}
+              className="flex items-center gap-2 px-6 py-3 rounded-full bg-emerald-950/60 hover:bg-emerald-900/80 border border-emerald-500/30 text-emerald-200 font-medium text-sm transition-all hover:scale-105 active:scale-95 shadow-lg shadow-emerald-500/10"
+            >
+              <Phone className="w-4 h-4 text-emerald-400" />
+              Call Me
+              <ArrowUpRight className="w-3.5 h-3.5 text-emerald-400" />
+            </a>
+
             <a
               href="https://github.com/BrovinQuadros"
               target="_blank"

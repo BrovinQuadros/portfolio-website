@@ -2,7 +2,7 @@
 
 import React from "react";
 import { motion, MotionValue, useTransform } from "framer-motion";
-import { Github, Linkedin, Mail, Download, Sparkles, ChevronDown, Cpu, BarChart3, Layers } from "lucide-react";
+import { Github, Linkedin, Mail, Download, ChevronDown, Cpu, BarChart3, Layers } from "lucide-react";
 
 interface OverlayProps {
   scrollProgress: MotionValue<number>;
@@ -33,14 +33,6 @@ export const Overlay: React.FC<OverlayProps> = ({ scrollProgress }) => {
         style={{ opacity: opacity1, scale: scale1, y: y1 }}
         className="w-full max-w-4xl flex flex-col items-center text-center space-y-5 md:space-y-6 pt-8 md:pt-12"
       >
-        {/* Badge */}
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 backdrop-blur-md">
-          <Sparkles className="w-3.5 h-3.5 text-sky-400 animate-pulse" />
-          <span className="text-xs md:text-sm font-medium tracking-wide text-gray-300">
-            Portfolio 2026
-          </span>
-        </div>
-
         {/* Heading & Subtitle */}
         <div className="space-y-3">
           <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tight text-white drop-shadow-2xl font-sans">
